@@ -35,67 +35,67 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
     - [] Routes
         - [x] User
         - [x] Creds
-        - [] Pesanan
-        - [] Detail Pesanan
-        - [] Lokasi
-        - [] Jenis Lokasi
-        - [] Jenis Orang
-        - [] Harga Wisata
+        - [ ] Pesanan
+        - [ ] Detail Pesanan
+        - [ ] Lokasi
+        - [ ] Jenis Lokasi
+        - [ ] Jenis Orang
+        - [ ] Harga Wisata
 
     - [] Database Configuration [Migration, Seeder, Factories]
         - [x] User
         - [x] Creds
-        - [] Pesanan
-        - [] Detail Pesanan
-        - [] Lokasi
-        - [] Jenis Lokasi
-        - [] Jenis Orang
-        - [] Harga Wisata
+        - [ ] Pesanan
+        - [ ] Detail Pesanan
+        - [ ] Lokasi
+        - [ ] Jenis Lokasi
+        - [ ] Jenis Orang
+        - [ ] Harga Wisata
 
     - [] Controllers
         - [x] User
         - [x] Creds
-        - [] Pesanan
-        - [] Detail Pesanan
-        - [] Lokasi
-        - [] Jenis Lokasi
-        - [] Jenis Orang
-        - [] Harga Wisata
+        - [ ] Pesanan
+        - [ ] Detail Pesanan
+        - [ ] Lokasi
+        - [ ] Jenis Lokasi
+        - [ ] Jenis Orang
+        - [ ] Harga Wisata
 
     - [] Resources
         - [x] User
         - [x] Creds
-        - [] Pesanan
-        - [] Detail Pesanan
-        - [] Lokasi
-        - [] Jenis Lokasi
-        - [] Jenis Orang
-        - [] Harga Wisata
+        - [ ] Pesanan
+        - [ ] Detail Pesanan
+        - [ ] Lokasi
+        - [ ] Jenis Lokasi
+        - [ ] Jenis Orang
+        - [ ] Harga Wisata
 
     - [] Filters
         - [x] User
         - [x] Creds
-        - [] Pesanan
-        - [] Detail Pesanan
-        - [] Lokasi
-        - [] Jenis Lokasi
-        - [] Jenis Orang
-        - [] Harga Wisata
+        - [ ] Pesanan
+        - [ ] Detail Pesanan
+        - [ ] Lokasi
+        - [ ] Jenis Lokasi
+        - [ ] Jenis Orang
+        - [ ] Harga Wisata
 
     - [] Request
         - [x] User
         - [x] Creds
-        - [] Pesanan
-        - [] Detail Pesanan
-        - [] Lokasi
-        - [] Jenis Lokasi
-        - [] Jenis Orang
-        - [] Harga Wisata
+        - [ ] Pesanan
+        - [ ] Detail Pesanan
+        - [ ] Lokasi
+        - [ ] Jenis Lokasi
+        - [ ] Jenis Orang
+        - [ ] Harga Wisata
 
     - [] authorization [Laravel Sanctum]
-        - [] Simple Tokenization [Abilites, Roles]
+        - [ ] Simple Tokenization [Abilites, Roles]
 
-- [] Optional
-    - [] Able to use LIKE, OR, and other Unique MySql Shenanigans operators on Filters section
+- [ ] Optional
+    - [ ] Able to use LIKE, OR, and other Unique MySql Shenanigans operators on Filters section
 
 The deadline is crazy tbh, it's on 9 January😊 not only that it needs front end finished by that
