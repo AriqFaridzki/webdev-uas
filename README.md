@@ -31,5 +31,5 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 
 ## Feature ⚡
 - [x] Write the press release
-- [ ] Update the website
-- [ ] Contact the media
+    - [ ] Update the website
+    - [ ] Contact the media
