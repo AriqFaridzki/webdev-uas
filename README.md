@@ -31,8 +31,8 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 
 ## Feature ⚡
 
-- [] What I Want 
-    - [] Routes
+- [ ] What I Want 
+    - [ ] Routes
         - [x] User
         - [x] Creds
         - [ ] Pesanan
@@ -42,7 +42,7 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
         - [ ] Jenis Orang
         - [ ] Harga Wisata
 
-    - [] Database Configuration [Migration, Seeder, Factories]
+    - [ ] Database Configuration [Migration, Seeder, Factories]
         - [x] User
         - [x] Creds
         - [ ] Pesanan
@@ -52,7 +52,7 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
         - [ ] Jenis Orang
         - [ ] Harga Wisata
 
-    - [] Controllers
+    - [ ] Controllers
         - [x] User
         - [x] Creds
         - [ ] Pesanan
@@ -62,7 +62,7 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
         - [ ] Jenis Orang
         - [ ] Harga Wisata
 
-    - [] Resources
+    - [ ] Resources
         - [x] User
         - [x] Creds
         - [ ] Pesanan
@@ -72,7 +72,7 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
         - [ ] Jenis Orang
         - [ ] Harga Wisata
 
-    - [] Filters
+    - [ ] Filters
         - [x] User
         - [x] Creds
         - [ ] Pesanan
@@ -82,7 +82,7 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
         - [ ] Jenis Orang
         - [ ] Harga Wisata
 
-    - [] Request
+    - [ ] Request
         - [x] User
         - [x] Creds
         - [ ] Pesanan
@@ -92,7 +92,7 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
         - [ ] Jenis Orang
         - [ ] Harga Wisata
 
-    - [] authorization [Laravel Sanctum]
+    - [ ] authorization [Laravel Sanctum]
         - [ ] Simple Tokenization [Abilites, Roles]
 
 - [ ] Optional
