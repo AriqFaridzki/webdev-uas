@@ -30,6 +30,72 @@ You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you
 If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
 ## Feature ⚡
-- [x] Write the press release
-    - [ ] Update the website
-    - [ ] Contact the media
+
+- [] What I Want 
+    - [] Routes
+        - [x] User
+        - [x] Creds
+        - [] Pesanan
+        - [] Detail Pesanan
+        - [] Lokasi
+        - [] Jenis Lokasi
+        - [] Jenis Orang
+        - [] Harga Wisata
+
+    - [] Database Configuration [Migration, Seeder, Factories]
+        - [x] User
+        - [x] Creds
+        - [] Pesanan
+        - [] Detail Pesanan
+        - [] Lokasi
+        - [] Jenis Lokasi
+        - [] Jenis Orang
+        - [] Harga Wisata
+
+    - [] Controllers
+        - [x] User
+        - [x] Creds
+        - [] Pesanan
+        - [] Detail Pesanan
+        - [] Lokasi
+        - [] Jenis Lokasi
+        - [] Jenis Orang
+        - [] Harga Wisata
+
+    - [] Resources
+        - [x] User
+        - [x] Creds
+        - [] Pesanan
+        - [] Detail Pesanan
+        - [] Lokasi
+        - [] Jenis Lokasi
+        - [] Jenis Orang
+        - [] Harga Wisata
+
+    - [] Filters
+        - [x] User
+        - [x] Creds
+        - [] Pesanan
+        - [] Detail Pesanan
+        - [] Lokasi
+        - [] Jenis Lokasi
+        - [] Jenis Orang
+        - [] Harga Wisata
+
+    - [] Request
+        - [x] User
+        - [x] Creds
+        - [] Pesanan
+        - [] Detail Pesanan
+        - [] Lokasi
+        - [] Jenis Lokasi
+        - [] Jenis Orang
+        - [] Harga Wisata
+
+    - [] authorization [Laravel Sanctum]
+        - [] Simple Tokenization [Abilites, Roles]
+
+- [] Optional
+    - [] Able to use LIKE, OR, and other Unique MySql Shenanigans operators on Filters section
+
+The deadline is crazy tbh, it's on 9 January😊 not only that it needs front end finished by that
