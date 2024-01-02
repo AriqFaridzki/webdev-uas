@@ -11,6 +11,9 @@ use App\Http\Resources\UserResource;
 use App\Http\Resources\UserCollection;
 
 use App\Http\Requests\V1\StoreUserRequest;
+use App\Http\Requests\V1\UpdateUserRequest;
+use App\Http\Requests\V1\BulkStoreUserRequest;
+use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
@@ -36,12 +39,48 @@ class UserController extends Controller
        
     }
 
+    public function bulkStore(BulkStoreUserRequest $request)
+    {
+        
+
+        try {
+            $bulk = collect($request->all())->map(function($arr, $keys){
+                return Arr::except($arr, ['namaDepan', 'namaBelakang', 'noTelp']);
+            });
+    
+            User::insert($bulk->toArray());
+            
+            return response()->json([
+                'status' => true,
+                'message' => 'berhasil menambah data'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'gagal menambah data'
+            ], 400);
+        }
+        
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreUserRequest $request)
     {
-        return new UserResource(User::create($request->all()));
+        try {
+            new UserResource(User::create($request->all()));
+            
+            return response()->json([
+                'status' => true,
+                'message' => 'berhasil menambah data'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'gagal menambah data'
+            ], 400);
+        }
     }
     /**
      * Display the specified resource.
@@ -54,9 +93,24 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-        //
+
+        try {
+            
+            $user->update($request->all());
+            
+            return response()->json([
+                'status' => true,
+                'message' => 'berhasil update data'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'gagal update data',
+                'because' => $e
+            ], 400);
+        }
     }
 
     /**
@@ -64,6 +118,20 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        try {
+            $user->cred()->delete();
+            $user->delete();
+            
+            return response()->json([
+                'status' => true,
+                'message' => 'berhasil hapus data'
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'gagal hapus data',
+                'because' => $e
+            ], 400);
+        }
     }
 }

@@ -23,13 +23,13 @@ class StoreUserRequest extends FormRequest
     public function rules(): array // the rules if you want the process to success
     {
         return [
-            'namaDepan' => ['required'],
-            'namaBelakang' => ['required'],
-            'alamat' => ['required'],
+            'namaDepan' => ['required', 'string'],
+            'namaBelakang' => ['required', 'string'],
+            'alamat' => ['required', 'string'],
             'email' => ['required', 'email'],
             'noTelp'  => ['required'],
             'gender' => ['required', Rule::in(['laki', 'perempuan'])],
-            'umur' => ['required'],
+            'umur' => ['required','numeric'],
         ];
     }
 
