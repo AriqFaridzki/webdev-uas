@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\V1;
+namespace App\Http\Requests\V1\cred;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreUserRequest extends FormRequest
+class StoreCredRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,22 +23,27 @@ class StoreUserRequest extends FormRequest
     public function rules(): array // the rules if you want the process to success
     {
         return [
-            'namaDepan' => ['required', 'string'],
-            'namaBelakang' => ['required', 'string'],
-            'alamat' => ['required', 'string'],
-            'email' => ['required', 'email'],
-            'noTelp'  => ['required'],
-            'gender' => ['required', Rule::in(['laki', 'perempuan'])],
-            'umur' => ['required','numeric'],
+            'idUser' => ['required', 'int'],
+            'username' => ['required', 'string'],
+            'password' => ['required'],
+            'roles' => ['required', Rule::in(['admin', 'pelanggan'])],
         ];
     }
 
     protected function prepareForValidation() // convert api column to db column
     {
         $this->merge([
-            'nama_depan' => $this->namaDepan,
-            'nama_belakang' => $this->namaBelakang,
-            'no_telp'=>  $this->noTelp,
+            'id_user' => $this->idUser,
         ]);
     }
 }
+
+
+// return [
+//     'id'=> $this->id,
+//     'idUser'=> $this->id_user,
+//     'username'=> $this->username,
+//     'password'=> $this->password,
+//     'roles'=> $this->roles,
+    
+// ];

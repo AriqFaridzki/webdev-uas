@@ -6,20 +6,21 @@ namespace App\Helpers;
 use Nette\Utils\Arrays;
 
 class jsonResponseHelper {
-    protected $message, $statusCode, $header,$processStatus;
-    protected  $responseMessage, $error, $data;
+    protected $messages, $statusCode, $header,$processStatus;
+    protected  $responsemessages, $error, $data;
 
 
-    public function __construct(bool $processStatus, int $statusCode,string $responseMessage ,$header=[], $error=null){
+    public function __construct(bool $processStatus, int $statusCode,string $responsemessages,$data=[],$header=[], $error=null){
         $this->processStatus = $processStatus;
         $this->statusCode = $statusCode;
         $this->header = $header;
-        $this->responseMessage = $responseMessage;
-        $this->message = [
+        $this->responsemessages = $responsemessages;
+        $this->messages = [
             'status' => $this->processStatus,
             'statusCode' => $this->statusCode,
-            'message' => $this->responseMessage,
-            'errorMsg' => $this->error
+            'messages' => $this->responsemessages,
+            'errorMsg' => $this->error,
+            'data' => $data
         ];
      }
      
@@ -28,15 +29,15 @@ class jsonResponseHelper {
     
      public function jsonResponse(){
         return response()->json(
-            $this->message,
+            $this->messages,
             $this->statusCode,
             $this->header,
         );
      }
 
-     public function jsonResponseWithData($data = []){
+     public function jsonResponseWithData(){
         return response()->json(
-            array_merge($this->message, ['data' => $data]),
+            $this->messages,
             $this->statusCode,
             $this->header,
         );

@@ -10,9 +10,9 @@ use App\Filters\V1\UserFilter;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\UserCollection;
 
-use App\Http\Requests\V1\StoreUserRequest;
-use App\Http\Requests\V1\UpdateUserRequest;
-use App\Http\Requests\V1\BulkStoreUserRequest;
+use App\Http\Requests\V1\user\StoreUserRequest;
+use App\Http\Requests\V1\user\UpdateUserRequest;
+use App\Http\Requests\V1\user\BulkStoreUserRequest;
 use Illuminate\Support\Arr;
 
 use App\Helpers\jsonResponseHelper;
@@ -41,9 +41,11 @@ class UserController extends Controller
                 $user = $user->with('cred');
             }
 
-            
+            $data = new UserCollection($user->paginate()->appends($request->query()));
 
-            return (new jsonResponseHelper(true, 200, 'Berhasil Menampilkan Data'))->jsonResponseWithData(new UserCollection($user->paginate()->appends($request->query())));
+
+
+            return (new jsonResponseHelper(true, 200, 'Berhasil Menampilkan Data',$data))->jsonResponseWithData();
         } catch (\Exception $e) {
             return (new jsonResponseHelper(false, 400, "gagal Menampilkan Data", [], $e))->jsonResponse();
         }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\V1\CredController;
 use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +27,11 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], f
     Route::apiResource('cred', CredController::class);
 
     Route::post('userBulk', ['uses' => 'UserController@bulkStore']);
+});
+
+Route::controller(AuthController::class)->group(function(){
+    Route::post('login', 'login');
+    Route::post('register', 'register');
+    Route::post('logout', 'logout');
+    Route::post('refresh', 'refresh');
 });
