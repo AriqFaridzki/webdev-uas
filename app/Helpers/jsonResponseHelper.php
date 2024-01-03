@@ -3,31 +3,35 @@
 
 namespace App\Helpers;
 
-use Illuminate\Http\Request;
-
+use Nette\Utils\Arrays;
 
 class jsonResponseHelper {
     protected $message, $statusCode, $header,$processStatus;
-    protected  $responseMessage;
+    protected  $responseMessage, $error;
 
 
-    public function jsonResponseHelper($processStatus, $statusCode, $header, $responseMessage){
-        $this->$statusCode = $statusCode;
-        $this->$header = $header;
-        $this->$processStatus = $processStatus;
-        $this->$message = [
+    public function __construct(bool $processStatus, int $statusCode,string $responseMessage, $header=[], $error=null){
+        $this->processStatus = $processStatus;
+        $this->statusCode = $statusCode;
+        $this->header = $header;
+        $this->responseMessage = $responseMessage;
+        $this->message = [
             'status' => $this->processStatus,
-            'message' => $this->responseMessage];
-    }
+            'statusCode' => $this->statusCode,
+            'message' => $this->responseMessage,
+            'errorMsg' => $this->error
+        ];
+     }
+     
 
 
     
-    public function response(){
-            return response()->json(
-                $this->message,
-                $this->statusCode,
-                $this->header);
-    }
+     public function jsonResponse(){
+        return response()->json(
+            $this->message,
+            $this->statusCode,
+            $this->header);
+     }
     
 }
 

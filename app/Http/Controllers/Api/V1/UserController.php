@@ -15,6 +15,8 @@ use App\Http\Requests\V1\UpdateUserRequest;
 use App\Http\Requests\V1\BulkStoreUserRequest;
 use Illuminate\Support\Arr;
 
+use App\Helpers\jsonResponseHelper;
+
 class UserController extends Controller
 {
     /**
@@ -97,19 +99,11 @@ class UserController extends Controller
     {
 
         try {
-            
-            $user->update($request->all());
-            
-            return response()->json([
-                'status' => true,
-                'message' => 'berhasil update data'
-            ], 200);
+            $user->update($request->all());     
+            return (new jsonResponseHelper(true, 200, 'Berhasil Update Data'))->jsonResponse();
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => false,
-                'message' => 'gagal update data',
-                'because' => $e
-            ], 400);
+            return (new jsonResponseHelper(false, 300, "Berhasil Update Data", null, $e))->jsonResponse();
+
         }
     }
 
@@ -119,6 +113,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         try {
+
             $user->cred()->delete();
             $user->delete();
             
@@ -133,5 +128,7 @@ class UserController extends Controller
                 'because' => $e
             ], 400);
         }
+
+
     }
 }
