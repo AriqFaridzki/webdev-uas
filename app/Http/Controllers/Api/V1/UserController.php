@@ -24,20 +24,30 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $filter = new UserFilter();
-        $queryItems = $filter->transform($request);
-
-        // echo var_dump($queryItems);
-
-        $includeCreds = $request->query('includeCreds');
-
-        $user = User::where($queryItems);
         
-        if($includeCreds){
-            $user = $user->with('cred');
-        }
+
+        try {  
             
-        return new UserCollection($user->paginate()->appends($request->query()));
+            $filter = new UserFilter();
+            $queryItems = $filter->transform($request);
+
+            // echo var_dump($queryItems);
+
+            $includeCreds = $request->query('includeCreds');
+
+            $user = User::where($queryItems);
+            
+            if($includeCreds){
+                $user = $user->with('cred');
+            }
+
+            
+
+            return (new jsonResponseHelper(true, 200, 'Berhasil Menampilkan Data'))->jsonResponseWithData(new UserCollection($user->paginate()->appends($request->query())));
+        } catch (\Exception $e) {
+            return (new jsonResponseHelper(false, 400, "gagal Menampilkan Data", [], $e))->jsonResponse();
+        }
+        
        
     }
 
@@ -45,23 +55,18 @@ class UserController extends Controller
     {
         
 
-        try {
+        try {  
             $bulk = collect($request->all())->map(function($arr, $keys){
                 return Arr::except($arr, ['namaDepan', 'namaBelakang', 'noTelp']);
             });
     
             User::insert($bulk->toArray());
-            
-            return response()->json([
-                'status' => true,
-                'message' => 'berhasil menambah data'
-            ], 200);
+
+            return (new jsonResponseHelper(true, 200, 'Berhasil Menambah Data'))->jsonResponse();
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => false,
-                'message' => 'gagal menambah data'
-            ], 400);
+            return (new jsonResponseHelper(false, 400, "gagal Menambah Data", [], $e))->jsonResponse();
         }
+
         
     }
 
@@ -70,26 +75,27 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        try {
+
+
+        try {  
             new UserResource(User::create($request->all()));
-            
-            return response()->json([
-                'status' => true,
-                'message' => 'berhasil menambah data'
-            ], 200);
+            return (new jsonResponseHelper(true, 200, 'Berhasil Menambah Data'))->jsonResponse();
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => false,
-                'message' => 'gagal menambah data'
-            ], 400);
+            return (new jsonResponseHelper(false, 400, "gagal Menambah Data", [], $e))->jsonResponse();
         }
+
+
     }
     /**
      * Display the specified resource.
      */
     public function show(User $user)
     {
-        return new UserResource($user);
+        try {   
+            return (new jsonResponseHelper(true, 200, 'Berhasil Menampilkan Data'))->jsonResponseWithData(new UserResource($user));
+        } catch (\Exception $e) {
+            return (new jsonResponseHelper(false, 400, "gagal Menampilkan Data", [], $e))->jsonResponse();
+        }
     }
 
     /**
@@ -102,7 +108,7 @@ class UserController extends Controller
             $user->update($request->all());     
             return (new jsonResponseHelper(true, 200, 'Berhasil Update Data'))->jsonResponse();
         } catch (\Exception $e) {
-            return (new jsonResponseHelper(false, 300, "Berhasil Update Data", null, $e))->jsonResponse();
+            return (new jsonResponseHelper(false, 400, "Berhasil Update Data", [], $e))->jsonResponse();
 
         }
     }
@@ -112,22 +118,17 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        try {
 
+
+        try {
             $user->cred()->delete();
-            $user->delete();
-            
-            return response()->json([
-                'status' => true,
-                'message' => 'berhasil hapus data'
-            ], 200);
+            $user->delete();  
+            return (new jsonResponseHelper(true, 200, 'Berhasil Hapus Data'))->jsonResponse();
         } catch (\Exception $e) {
-            return response()->json([
-                'status' => false,
-                'message' => 'gagal hapus data',
-                'because' => $e
-            ], 400);
+            return (new jsonResponseHelper(false, 400, "Gagal Hapus Data", [], $e))->jsonResponse();
+
         }
+
 
 
     }

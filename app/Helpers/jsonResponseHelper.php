@@ -7,10 +7,10 @@ use Nette\Utils\Arrays;
 
 class jsonResponseHelper {
     protected $message, $statusCode, $header,$processStatus;
-    protected  $responseMessage, $error;
+    protected  $responseMessage, $error, $data;
 
 
-    public function __construct(bool $processStatus, int $statusCode,string $responseMessage, $header=[], $error=null){
+    public function __construct(bool $processStatus, int $statusCode,string $responseMessage ,$header=[], $error=null){
         $this->processStatus = $processStatus;
         $this->statusCode = $statusCode;
         $this->header = $header;
@@ -30,7 +30,16 @@ class jsonResponseHelper {
         return response()->json(
             $this->message,
             $this->statusCode,
-            $this->header);
+            $this->header,
+        );
+     }
+
+     public function jsonResponseWithData($data = []){
+        return response()->json(
+            array_merge($this->message, ['data' => $data]),
+            $this->statusCode,
+            $this->header,
+        );
      }
     
 }
