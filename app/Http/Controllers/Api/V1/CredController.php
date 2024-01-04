@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\CredCollection;
 use App\Http\Resources\CredResource;
 use App\Filters\V1\CredFilter;
-use GuzzleHttp\Psr7\Query;
+use App\Http\Requests\V1\StoreCredRequest;
 
 class CredController extends Controller
 {
@@ -37,9 +37,9 @@ class CredController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCredRequest $request)
     {
-        //
+        return new CredResource(cred::create($request->all()));
     }
 
     /**

@@ -10,6 +10,12 @@ class cred extends Model
 {
     use HasFactory;
 
+    protected $fillable =[
+        'id_user',
+        'username',
+        'password',
+        'roles',
+    ];
 
     public function cred(): BelongsTo {
         return $this->BelongsTo(User::class, 'id_user');
