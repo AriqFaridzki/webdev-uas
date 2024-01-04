@@ -20,20 +20,11 @@ class jsonResponseHelper {
             'statusCode' => $this->statusCode,
             'messages' => $this->responsemessages,
             'errorMsg' => $this->error,
-            'data' => $data
+            'data' => $data,
         ];
      }
      
 
-
-    
-     public function jsonResponse(){
-        return response()->json(
-            $this->messages,
-            $this->statusCode,
-            $this->header,
-        );
-     }
 
      public function jsonResponseWithData(){
         return response()->json(
@@ -42,6 +33,18 @@ class jsonResponseHelper {
             $this->header,
         );
      }
+
+    
+     public function jsonResponse(){
+        return response()->json(
+            $this->messages,
+            $this->statusCode,
+            $this->header,
+
+        );
+     }
+
+     
     
 }
 

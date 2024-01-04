@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,7 +14,8 @@ use App\Models\cred;
 use App\Http\Controllers\Api\V1\CredController;
 
 use App\Helpers\jsonResponseHelper;
-
+use App\Http\Resources\CredResource;
+use App\Http\Requests\V1\cred\StoreCredRequest;
 class AuthController extends Controller
 {
     public function __construct()
@@ -24,11 +25,13 @@ class AuthController extends Controller
 
     public function login(Request $request){
         $request->validate([
-            'email' => 'required|string|email',
+            'id_user' => 'required|numeric',
+            'username' => 'required|string',
             'password' => 'required|string',
         ]);
 
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('id_user','username', 'password');
+
         $token = Auth::attempt($credentials);
         
         if (!$token) {
@@ -36,8 +39,10 @@ class AuthController extends Controller
                 'message' => 'Unauthorized',
             ], 401);
         }
-
         $user = Auth::user();
+
+        // $user->load('creds');
+
         return response()->json([
             'user' => $user,
             'authorization' => [
@@ -49,29 +54,28 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $request->validate([
-            'idUser' => 'required|numeric|min:1',
-            'username' => 'required|string|max:255',
-            // 'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-            'roles' => 'required|string',
+        // $request->validate([
+        //     'idUser' => 'required|numeric|min:1',
+        //     'username' => 'required|string|max:255',
+        //     // 'email' => 'required|string|email|max:255|unique:users',
+        //     'password' => 'required|string|min:6',
+        //     'roles' => 'required|string',
 
-        ]);
-
+        // ]);
         $user = cred::create([
-            'idUser' => $request->idUser,
-            'username' => $request->name,
+            'id_user' => $request->id_user,
+            'username' => $request->username,
             // 'email' => $request->email,
             'password' => Hash::make($request->password),
             'roles' => $request->roles,
         ]);
 
         $responseMsg = [
-            'user' => $user
+            'cred' => $user
         ];
 
         // return (new jsonResponseHelper(true, 200, 'User created successfully')->jsonResponseWithData());
-        (new jsonResponseHelper(true, 200, 'Berhasil Membuat Cred'))->jsonResponseWithData($responseMsg);
+        return (new jsonResponseHelper(true, 200, 'Berhasil Membuat Cred', $responseMsg))->jsonResponseWithData();
     }
 
     public function logout()

@@ -14,4 +14,12 @@ class cred extends Model
     public function cred(): BelongsTo {
         return $this->BelongsTo(User::class, 'id_user');
     }
+
+
+    protected $fillable = [
+        'id_user',
+        'username',
+        'password',
+        'roles',
+    ];
 }

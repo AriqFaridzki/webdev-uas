@@ -16,6 +16,8 @@ use App\Http\Requests\V1\user\BulkStoreUserRequest;
 use Illuminate\Support\Arr;
 
 use App\Helpers\jsonResponseHelper;
+use Illuminate\Support\Facades\Response;
+use Namshi\JOSE\Signer\OpenSSL\RSA;
 
 class UserController extends Controller
 {
@@ -42,10 +44,10 @@ class UserController extends Controller
             }
 
             $data = new UserCollection($user->paginate()->appends($request->query()));
+            // $data = UserCollection::make($user->paginate()->appends($request->query()));
 
 
-
-            return (new jsonResponseHelper(true, 200, 'Berhasil Menampilkan Data',$data))->jsonResponseWithData();
+            return $data;
         } catch (\Exception $e) {
             return (new jsonResponseHelper(false, 400, "gagal Menampilkan Data", [], $e))->jsonResponse();
         }
@@ -91,10 +93,21 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $user)
+    public function show(User $user, Request $request)
     {
         try {   
-            return (new jsonResponseHelper(true, 200, 'Berhasil Menampilkan Data'))->jsonResponseWithData(new UserResource($user));
+
+            // echo var_dump($queryItems);
+
+            $includeCreds = $request->query('includeCreds');
+
+            if($includeCreds){
+                $user = $user->load('cred');
+            }
+
+            return $user;
+
+            // return (new jsonResponseHelper(true, 200, 'Berhasil Menampilkan Data',new UserResource($users)))->jsonResponseWithData();
         } catch (\Exception $e) {
             return (new jsonResponseHelper(false, 400, "gagal Menampilkan Data", [], $e))->jsonResponse();
         }
