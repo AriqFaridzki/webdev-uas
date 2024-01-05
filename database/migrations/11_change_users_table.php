@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('pesanans', function (Blueprint $table) {
-            $table->string('foto_bukti_pembayaran')->after('status_pesanan')->nullable();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('username')->after('no_telp');
+            $table->string('password');
+            $table->enum('roles',['admin', 'pelanggan']);
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('pesanans', function (Blueprint $table) {
-            //
-        });
+        //
     }
 };

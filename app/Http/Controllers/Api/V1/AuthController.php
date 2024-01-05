@@ -16,6 +16,8 @@ use App\Http\Controllers\Api\V1\CredController;
 use App\Helpers\jsonResponseHelper;
 use App\Http\Resources\CredResource;
 use App\Http\Requests\V1\cred\StoreCredRequest;
+
+
 class AuthController extends Controller
 {
     public function __construct()
@@ -29,20 +31,20 @@ class AuthController extends Controller
             'username' => 'required|string',
             'password' => 'required|string',
         ]);
-
+     
         $credentials = $request->only('id_user','username', 'password');
-
-        $token = Auth::attempt($credentials);
+    
+        // Change 'api' to 'creds' to use the creds table for authentication
+        $token = Auth::guard('api')->attempt($credentials);
         
         if (!$token) {
             return response()->json([
                 'message' => 'Unauthorized',
             ], 401);
         }
-        $user = Auth::user();
-
-        // $user->load('creds');
-
+     
+        $user = Auth::guard('api')->user();
+     
         return response()->json([
             'user' => $user,
             'authorization' => [
@@ -54,28 +56,17 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        // $request->validate([
-        //     'idUser' => 'required|numeric|min:1',
-        //     'username' => 'required|string|max:255',
-        //     // 'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => 'required|string|min:6',
-        //     'roles' => 'required|string',
 
-        // ]);
-        $user = cred::create([
-            'id_user' => $request->id_user,
-            'username' => $request->username,
-            // 'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'roles' => $request->roles,
+        // $request->validated($request->all());
+
+        // return $request;
+
+        return cred::create([
+            'id_user'=> $request->id_user,
+            'username'=> $request->username,
+            'password'=> $request->Hash::make($request->password),
+            'roles'=> $request->roles
         ]);
-
-        $responseMsg = [
-            'cred' => $user
-        ];
-
-        // return (new jsonResponseHelper(true, 200, 'User created successfully')->jsonResponseWithData());
-        return (new jsonResponseHelper(true, 200, 'Berhasil Membuat Cred', $responseMsg))->jsonResponseWithData();
     }
 
     public function logout()

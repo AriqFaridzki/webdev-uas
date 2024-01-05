@@ -15,7 +15,6 @@ class UserSeeder extends Seeder
     {
         User::factory()
         ->count(100)
-        ->hasCred(1)
         ->create();
         
     }

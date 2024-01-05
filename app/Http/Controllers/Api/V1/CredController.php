@@ -33,8 +33,8 @@ class CredController extends Controller
             $cred = cred::where($queryItems)->paginate();
             // echo var_dump($queryItems);
 
-
-            return (new jsonResponseHelper(true, 200, 'Berhasil Menambah Data'))->jsonResponseWithData( new CredCollection($cred->appends($request->query())));
+            return $cred;
+            // return (new jsonResponseHelper(true, 200, 'Berhasil Menampilkan Data'))->jsonResponseWithData( new CredCollection($cred->appends($request->query())));
         } catch (\Exception $e) {
             return (new jsonResponseHelper(false, 400, "gagal Menambah Data", [], $e))->jsonResponse();
         }

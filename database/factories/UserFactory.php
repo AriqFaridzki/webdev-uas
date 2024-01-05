@@ -30,7 +30,10 @@ class UserFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'no_telp' => '62'. fake()->unique()->numerify('###########'),
             'gender' => fake()->randomElement(['laki', 'perempuan']),
-            'umur' => fake()->numberBetween(16,70),
+            'roles' => fake()->randomElement(['admin', 'pelanggan']),
+            'username' => fake()->userName(),
+            'password' => fake()->password(6, 20),
+            'umur' => fake()->numberBetween(15, 70),
         ];
     }
 

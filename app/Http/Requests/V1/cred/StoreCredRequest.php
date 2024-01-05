@@ -23,7 +23,7 @@ class StoreCredRequest extends FormRequest
     public function rules(): array // the rules if you want the process to success
     {
         return [
-            'idUser' => ['required', 'int'],
+            'id_user' => ['required', 'int'],
             'username' => ['required', 'string'],
             'password' => ['required'],
             'roles' => ['required', Rule::in(['admin', 'pelanggan'])],

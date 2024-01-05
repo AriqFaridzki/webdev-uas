@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'creds',
+        'passwords' => 'users',
     ],
 
     /*
@@ -67,13 +67,13 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\cred::class,
+            'model' => App\Models\user::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'creds' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\cred::class,
+        ],
     ],
 
     /*
