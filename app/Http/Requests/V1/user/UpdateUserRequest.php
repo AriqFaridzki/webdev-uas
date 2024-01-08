@@ -18,7 +18,7 @@ class UpdateUserRequest extends FormRequest
     {
         if ($this->method() == 'PUT') {
             return [
-                'namaDepan' => ['required', 'string'],
+            'namaDepan' => ['required', 'string'],
             'namaBelakang' => ['required', 'string'],
             'alamat' => ['required', 'string'],
             'email' => ['required', 'email'],

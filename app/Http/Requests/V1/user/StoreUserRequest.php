@@ -30,6 +30,9 @@ class StoreUserRequest extends FormRequest
             'noTelp'  => ['required'],
             'gender' => ['required', Rule::in(['laki', 'perempuan'])],
             'umur' => ['required','numeric'],
+            'username' => ['required','string'],
+            'password' => ['required',],
+            'roles' => ['required', Rule::in(['admin', 'pelanggan'])],
         ];
     }
 

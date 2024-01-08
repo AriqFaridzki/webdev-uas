@@ -3,6 +3,11 @@
 use App\Http\Controllers\Api\V1\CredController;
 use App\Http\Controllers\Api\V1\UserController;
 use App\Http\Controllers\Api\V1\AuthController;
+use App\Http\Controllers\Api\V1\detailPesanansController;
+use App\Http\Controllers\Api\V1\hargaWisataController;
+use App\Http\Controllers\Api\V1\lokasiController;
+use App\Http\Controllers\Api\V1\pesananController;
+use App\Http\Controllers\Api\V1\pesananControllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,21 +22,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
 //api/v1
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], function(){
     Route::apiResource('user', UserController::class);
     Route::apiResource('cred', CredController::class);
+    Route::apiResource('detailPesanan', detailPesanansController::class);
+    Route::apiResource('pesanan', pesananControllers::class);
+    Route::apiResource('lokasi', lokasiController::class);
+    // Route::apiResource('hargaWisata', hargaWisataController::class);
+    // Route::apiResource('jenisLokasi', jenisLo::class);
+    // Route::apiResource('jenisOrang', hargaWisataController::class);
+    // Route::apiResource('cred', CredController::class);
 
     Route::post('userBulk', ['uses' => 'UserController@bulkStore']);
 });
 
-Route::controller(AuthController::class)->group(function(){
-    Route::post('login', 'login');
-    Route::post('register', 'register');
-    Route::post('logout', 'logout');
-    Route::post('refresh', 'refresh');
+Route::post('/login', 'App\Http\Controllers\Api\V1\AuthController@index');
+Route::get('/logout', 'App\Http\Controllers\Api\V1\AuthController@logout');
+
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
 });

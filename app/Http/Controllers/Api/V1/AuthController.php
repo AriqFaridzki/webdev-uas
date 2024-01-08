@@ -9,84 +9,48 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 use App\Models\User;
-use App\Models\cred;
 
-use App\Http\Controllers\Api\V1\CredController;
-
-use App\Helpers\jsonResponseHelper;
-use App\Http\Resources\CredResource;
-use App\Http\Requests\V1\cred\StoreCredRequest;
 
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
-    }
-
-    public function login(Request $request){
+    public function index(Request $request){
         $request->validate([
-            'id_user' => 'required|numeric',
             'username' => 'required|string',
-            'password' => 'required|string',
+            'password' => 'required',
         ]);
-     
-        $credentials = $request->only('id_user','username', 'password');
-    
-        // Change 'api' to 'creds' to use the creds table for authentication
-        $token = Auth::guard('api')->attempt($credentials);
+
+
+        $user= User::where('username', $request->username)->first();
         
-        if (!$token) {
-            return response()->json([
-                'message' => 'Unauthorized',
-            ], 401);
-        }
-     
-        $user = Auth::guard('api')->user();
-     
-        return response()->json([
-            'user' => $user,
-            'authorization' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
+            if (!$user || !Hash::check($request->password, $user->password)) {
+                return response()->json([
+                    'success'   => false,
+                    'message' => ['These credentials do not match our records.']
+                ], 404);
+            }
+        
+            $token = $user->createToken('ApiToken')->plainTextToken;
+        
+            $response = [
+                'success'   => true,
+                'user'      => $user,
+                'token'     => $token
+            ];
+        
+        return response($response, 201);
     }
-
-    public function register(Request $request)
-    {
-
-        // $request->validated($request->all());
-
-        // return $request;
-
-        return cred::create([
-            'id_user'=> $request->id_user,
-            'username'=> $request->username,
-            'password'=> $request->Hash::make($request->password),
-            'roles'=> $request->roles
-        ]);
-    }
-
+    
     public function logout()
     {
-        Auth::logout();
+        auth()->logout();
         return response()->json([
-            'message' => 'Successfully logged out',
-        ]);
+            'success'    => true
+        ], 200);
     }
 
-    public function refresh()
+    public function register()
     {
-        return response()->json([
-            'user' => Auth::user(),
-            'authorisation' => [
-                'token' => Auth::refresh(),
-                'type' => 'bearer',
-            ]
-        ]);
-    }
 
-    
+    }
 }

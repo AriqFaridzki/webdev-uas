@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Hash;
 
 class UserResource extends JsonResource
 {
@@ -28,7 +29,10 @@ class UserResource extends JsonResource
             'noTelp' => $this->no_telp,
             'gender' => $this->gender,
             'umur' => $this->umur,
-            'creds' => new CredResource($this->whenLoaded('cred')) // for single HasOne relation
+            'username' => $this->username,
+            'password' => Hash::make($this->password),
+            'roles' => $this->roles,
+            // 'creds' => new CredResource($this->whenLoaded('cred')) // for single HasOne relation
             // 'creds' => CredResource::collection($this->whenLoaded('cred')) // for  HasMany relationship
         ];
     }

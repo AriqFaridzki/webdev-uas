@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_harga_wisata');
             
             $table->foreignId('id_lokasi')->constrained(
-                table: 'lokasis', column: 'id_lokasi', indexName: "id_lokasi_ on harga_Wisata"
+                table: 'lokasis', column: 'id_lokasi', indexName: "id_lokasi_on harga_Wisata"
             );
 
         
