@@ -11,8 +11,8 @@ class jenis_lokasi extends Model
     use HasFactory;
 
 
-    public function lokasi():BelongsTo{
-        return $this->belongsTo(lokasi::class, 'id_jenis_lokasi');
+    public function jenis_lokasi():BelongsTo{
+        return $this->belongsTo(lokasi::class, 'jenis_lokasi', 'id_jenis_lokasi');
     }
 
     protected $fillable =[

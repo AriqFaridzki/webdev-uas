@@ -11,7 +11,7 @@ class lokasi_store extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,10 +24,10 @@ class lokasi_store extends FormRequest
         return [
             // 'idLokasi'=> ['required'],
             'namaLokasi'=> ['required'],
-            'alamat '=> ['required'],
-            'keterangan '=>['required'],
-            'mapLink '=> ['sometimes'],
-            'jenisLokasi '=>['required'],
+            'alamat'=> ['required'],
+            'keterangan'=>['required'],
+            'mapLink'=> ['sometimes'],
+            'jenisLokasi'=>['required'],
         ];
     }
 

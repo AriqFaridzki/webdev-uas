@@ -30,12 +30,12 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1'], f
     Route::apiResource('detailPesanan', detailPesanansController::class);
     Route::apiResource('pesanan', pesananControllers::class);
     Route::apiResource('lokasi', lokasiController::class);
-    // Route::apiResource('hargaWisata', hargaWisataController::class);
-    // Route::apiResource('jenisLokasi', jenisLo::class);
+    Route::apiResource('hargaWisata', hargaWisataController::class);
+    // Route::apiResource('jenisLokasi', jenisLokasi::class);
     // Route::apiResource('jenisOrang', hargaWisataController::class);
-    // Route::apiResource('cred', CredController::class);
+    Route::apiResource('cred', CredController::class);
 
-    Route::post('userBulk', ['uses' => 'UserController@bulkStore']);
+    // Route::post('userBulk', ['uses' => 'UserController@bulkStore']);
 });
 
 Route::post('/login', 'App\Http\Controllers\Api\V1\AuthController@index');

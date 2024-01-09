@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 use App\Filters\V1\PesananFilter;
 use App\Helpers\jsonResponseHelper;
+use App\Http\Requests\V1\pesanan\pesanan_store;
 
 class pesananControllers extends Controller
 {
@@ -31,7 +32,7 @@ class pesananControllers extends Controller
             $user = pesanan::where($queryItems);
             
             if($includePesanan){
-                $user = $user->with('pesanan');
+                $user = $user->with('detail_pesanans');
             }
 
             $data = new pesananCollection($user->paginate()->appends($request->query()));
@@ -40,7 +41,7 @@ class pesananControllers extends Controller
 
             return $data;
         } catch (\Exception $e) {
-            return (new jsonResponseHelper(false, 400, "gagal Menampilkan Data", [], $e))->jsonResponse();
+            // return (new jsonResponseHelper(false, 400, "gagal Menampilkan Data", [], $e))->jsonResponse();
         }
         // return new pesananCollection(pesanan::paginate());
     }
@@ -48,9 +49,9 @@ class pesananControllers extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(pesanan_store $request)
     {
-        //
+        return new pesananResource(pesanan::create($request->all()));
     }
 
     /**
@@ -61,7 +62,7 @@ class pesananControllers extends Controller
         try {   
 
             // echo var_dump($queryItems);
-
+            // return new pesananResource($pesanan);
             $includeDetail = $request->query('includeDetail');
 
             if($includeDetail){
@@ -72,7 +73,9 @@ class pesananControllers extends Controller
 
             // return (new jsonResponseHelper(true, 200, 'Berhasil Menampilkan Data',new UserResource($users)))->jsonResponseWithData();
         } catch (\Exception $e) {
-            return (new jsonResponseHelper(false, 400, "gagal Menampilkan Data", [], $e))->jsonResponse();
+            return response()->json([
+                'false'
+            ]);
         }
     }
 

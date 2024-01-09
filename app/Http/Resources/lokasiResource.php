@@ -20,7 +20,7 @@ class lokasiResource extends JsonResource
             'alamat '=> $this->alamat, 
             'keterangan '=> $this->keterangan, 
             'map_link '=> $this->map_link, 
-            'jenis_lokasi  '=> new lokasiCollection($this->whenLoaded('lokasi')), 
+            // 'jenis_lokasi  '=> new lokasiCollection($this->whenLoaded('lokasi')), 
         ];
     }
 }

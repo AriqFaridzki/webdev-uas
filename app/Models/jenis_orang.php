@@ -10,8 +10,8 @@ class jenis_orang extends Model
 {
     use HasFactory;
 
-    public function harga_wisata():BelongsTo{
-        return $this->belongsTo(harga_wisata::class, 'id_jenis_orang');
+    public function hargaWisatas():BelongsTo{
+        return $this->belongsTo(harga_wisata::class, 'id_jenis_orang', 'id_jenis_orang');
     }
 
     protected $fillable =[

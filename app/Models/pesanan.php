@@ -11,7 +11,7 @@ class pesanan extends Model
     use HasFactory;
 
 
-    public function pesanan():HasMany{
+    public function detail_pesanans():HasMany{
         return $this->hasMany(detail_pesanan::class, 'id_pesanan');
     }
 

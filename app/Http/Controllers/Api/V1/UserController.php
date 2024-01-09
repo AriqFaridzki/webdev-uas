@@ -95,22 +95,24 @@ class UserController extends Controller
      */
     public function show(User $user, Request $request)
     {
-        try {   
 
-            // echo var_dump($queryItems);
+        return $user;
+        // try {   
 
-            $includeCreds = $request->query('includeCreds');
+        //     // echo var_dump($queryItems);
 
-            if($includeCreds){
-                $user = $user->load('cred');
-            }
+        //     $includeCreds = $request->query('includeCreds');
 
-            return $user;
+        //     if($includeCreds){
+        //         $user = $user->load('cred');
+        //     }
 
-            // return (new jsonResponseHelper(true, 200, 'Berhasil Menampilkan Data',new UserResource($users)))->jsonResponseWithData();
-        } catch (\Exception $e) {
-            return (new jsonResponseHelper(false, 400, "gagal Menampilkan Data", [], $e))->jsonResponse();
-        }
+        //     return $user;
+
+        //     // return (new jsonResponseHelper(true, 200, 'Berhasil Menampilkan Data',new UserResource($users)))->jsonResponseWithData();
+        // } catch (\Exception $e) {
+        //     return (new jsonResponseHelper(false, 400, "gagal Menampilkan Data", [], $e))->jsonResponse();
+        // }
     }
 
     /**

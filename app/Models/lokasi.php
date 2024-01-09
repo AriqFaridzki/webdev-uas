@@ -12,18 +12,20 @@ class lokasi extends Model
     use HasFactory;
 
 
-    public function lokasi():HasOne{
-        return $this->HasOne(jenis_lokasi::class, 'id_jenis_lokasi');
+    public function relatedJenisLokasi():HasOne{
+        return $this->HasOne(jenis_lokasi::class, 'id_jenis_lokasi', 'jenis_lokasi');
     }
 
-    public function harga_wisata():BelongsTo{
-        return $this->belongsTo(harga_wisata::class, 'id_lokasi');
+    public function hargaWisata():BelongsTo{
+        return $this->belongsTo(harga_wisata::class, 'id_lokasi', 'id_lokasi');
     }
 
     protected $fillable =[
         'nama_lokasi',
         'alamat',
+        'keterangan',
         'map_link',
+        'jenis_lokasi'
     ];
 
     protected $primaryKey = 'id_lokasi';

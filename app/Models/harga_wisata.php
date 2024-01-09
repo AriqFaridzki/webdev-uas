@@ -11,15 +11,15 @@ class harga_wisata extends Model
 {
     use HasFactory;
 
-    public function lokasi():HasOne{
-        return $this->hasOne(lokasi::class, 'id_lokasi');
+    public function lokasis():HasOne{
+        return $this->hasOne(lokasi::class, 'id_lokasi', 'id_lokasi');
     }
 
-    public function jenis_orang():HasOne{
-        return $this->hasOne(jenis_orang::class, 'id_jenis_orang');
+    public function relatedJenisOrang():HasOne{
+        return $this->hasOne(jenis_orang::class, 'id_jenis_orang', 'id_jenis_orang');
     }
 
-    public function harga_wisata():BelongsTo{
+    public function detailPesanans():BelongsTo{
         return $this->belongsTo(detail_pesanan::class, 'id_harga_wisata', 'id_harga_wisata');
     }
 
@@ -32,10 +32,11 @@ class harga_wisata extends Model
 
     protected $primaryKey = 'id_harga_wisata';
 
-    protected $with = ['jenis_orang', 'lokasi', 'harga_wisata'];
+    protected $with = ['relatedJenisOrang', 'lokasis'];
 
 
 }
+
 
 
 // $table->foreignId('id_lokasi')->constrained(

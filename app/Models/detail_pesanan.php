@@ -11,8 +11,8 @@ class detail_pesanan extends Model
 {
     use HasFactory;
 
-    public function pesanan():BelongsTo{
-        return $this->belongsTo(pesanan::class, 'id_pesanan','id_detail_pesanan');
+    public function detail_pesanans():BelongsTo{
+        return $this->belongsTo(pesanan::class, 'id_pesanan');
     }
 
     public function harga_wisata():HasOne{

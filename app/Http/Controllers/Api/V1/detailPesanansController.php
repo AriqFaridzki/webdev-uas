@@ -11,7 +11,6 @@ use App\Http\Requests\V1\detail_pesanan\detail_pesanan_store;
 use App\Http\Requests\V1\detail_pesanan\detail_pesanan_update;
 use App\Helpers\jsonResponseHelper;
 use App\Http\Resources\detail_pesananResource;
-
 class detailPesanansController extends Controller
 {
     /**
@@ -25,9 +24,15 @@ class detailPesanansController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(detail_pesanan_store $request)
     {
-        //
+        try {  
+            return new detail_pesananResource(detail_pesanan::create($request->all()));
+            // return (new jsonResponseHelper(true, 200, 'Berhasil Menambah Data'))->jsonResponse();
+        } catch (\Exception $e) {
+            // return (new jsonResponseHelper(false, 400, "gagal Menambah Data", [], $e))->jsonResponse();
+        }
+
     }
 
     /**

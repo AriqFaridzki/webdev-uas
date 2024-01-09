@@ -24,17 +24,19 @@ class hargaWisataController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(harga_wisata_store $request)
     {
-        //
+        return new harga_wisataResource(harga_wisata::create($request->all()));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(harga_wisata $harga_wisata)
-    {
-        return new harga_wisataResource($harga_wisata);
+    public function show(harga_wisata $harga_wisata, Request $request)
+    {   
+
+        return $harga_wisata;
+        // return new harga_wisataResource($harga_wisata)? response()->json(['exist' => $harga_wisata] ) : response()->json([$harga_wisata]);
         // return new lokasiResource($lokasi)
     }
 

@@ -24,10 +24,10 @@ class pesanan_store extends FormRequest
         return [
             'idUser'=> ['required'],
             'tglPesan'=> ['required'],
-            'tglSelesai '=> ['required'],
-            'statusPesanan '=>['required'],
-            'totalHarga '=> ['required'],
-            'fotoBuktiPembayaran '=>['sometimes'],
+            'tglSelesai'=> ['required'],
+            'statusPesanan'=>['required'],
+            'totalHarga'=> ['required'],
+            'fotoBuktiPembayaran'=>['sometimes'],
         ];
     }
 

@@ -23,9 +23,9 @@ class detail_pesanan_store extends FormRequest
     {
         return [
             // 'idDetailPesanan'=> ['required'],
-            'idPesanan'=> ['required'],
-            'idHargaWisata '=> ['required'],
-            'qty '=>['required']
+            'idPesanan'=> ['required','int'],
+            'idHargaWisata'=> ['required','int'],
+            'qty'=>['required','int']
         ];
     }
 

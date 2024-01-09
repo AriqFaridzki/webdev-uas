@@ -24,8 +24,8 @@ class harga_wisata_store extends FormRequest
         return [
             // 'idHargaWisata'=> ['required'],
             'harga'=> ['required'],
-            'idLokasi '=> ['required'],
-            'idJenisOrang '=>['required']
+            'idLokasi'=> ['required'],
+            'idJenisOrang'=>['required']
         ];
     }
 

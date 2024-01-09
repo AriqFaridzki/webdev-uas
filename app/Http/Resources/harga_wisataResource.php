@@ -4,6 +4,8 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\lkasiCollection;
+use App\Http\Resources\jenis_lokasiCollection;
 
 class harga_wisataResource extends JsonResource
 {
@@ -17,8 +19,8 @@ class harga_wisataResource extends JsonResource
         return [
             'id_harga_wisata '=> $this->id_harga_wisata,
             'harga'=> $this->harga,
-            'id_lokasi '=> new lokasiCollection($this->whenLoaded('lokasi')),
-            'id_jenis_orang '=> new jenis_orangCollection($this->whenLoaded('jenis_orang')) , 
+            'lokasi '=> $this->relationLoaded('lokasis') ? new lokasiResource($this->lokasis) : null,
+            'id_jenis_orang '=> $this->relationLoaded('relatedJenisOrang') ? new jenis_orangResource($this->relatedJenisOrang) : null , 
         ];
     }
 }

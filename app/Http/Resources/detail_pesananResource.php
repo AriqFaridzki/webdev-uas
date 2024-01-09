@@ -16,9 +16,9 @@ use Illuminate\Http\Resources\Json\JsonResource;
         {
             return [
                 'idDetailPesanan'=> $this->id_detail_pesanan,
-                'idPesanan'=> $this->id_pesanan,
+                // 'idPesanan'=> new pesananResource($this->whenLoaded('detail_pesanans')),
                 // 'idHargaWisata'=> $this->id_harga_wisata,
-                'idHargaWisata'=>new harga_wisataResource($this->whenLoaded('harga_wisata')),
+                'idHargaWisata'=>new harga_wisataResource($this->whenLoaded('detailPesanans')),
                 'qty'=> $this->qty,
                 
             ];

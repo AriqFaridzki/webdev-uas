@@ -22,7 +22,7 @@ class pesananResource extends JsonResource
             'status_pesanan'=> $this->status_pesanan, 
             'foto_bukti_pembayaran'=> $this->foto_bukti_pembayaran, 
             'total_harga'=> $this->total_harga,
-            'detail_pesanan' => detail_pesananCollection::collection($this->whenLoaded('pesanan'))
+            'detail_pesanan' => detail_pesananResource::collection($this->whenLoaded('detail_pesanans'))
         ];
     }
 }
